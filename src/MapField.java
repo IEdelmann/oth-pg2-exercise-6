@@ -1,21 +1,13 @@
-public class MapField {
+public abstract class MapField {
     protected char fieldSymbol;
-    protected boolean isEatable;
-    protected boolean isPassable;
+    protected boolean consumable;
+    protected boolean passable;
 
     protected Coordinates fieldCoordinates;
 
-    public MapField() {
-        this.fieldSymbol = 'W';
-        this.isEatable = false;
-        this.isPassable = false;
-    }
-
-    public MapField(char fieldSymbol, boolean isEatable, boolean isPassable) {
-        this.fieldSymbol = fieldSymbol;
-        this.isEatable = isEatable;
-        this.isPassable = isPassable;
-    }
+//    public MapField(int xCoordinate, int yCoordinate) {
+//        this.fieldCoordinates = new Coordinates(xCoordinate, yCoordinate);
+//    }
 
     public void printSymbol() {
         System.out.print(this.getFieldSymbol());
@@ -29,19 +21,32 @@ public class MapField {
         this.fieldSymbol = fieldSymbol;
     }
 
-    public boolean isEatable() {
-        return isEatable;
+    public boolean isConsumable() {
+        return consumable;
     }
 
-    public void setEatable(boolean eatable) {
-        isEatable = eatable;
+    public void setConsumable(boolean consumable) {
+        this.consumable = consumable;
     }
 
     public boolean isPassable() {
-        return isPassable;
+        return passable;
     }
 
     public void setPassable(boolean passable) {
-        isPassable = passable;
+        this.passable = passable;
+    }
+
+    public Coordinates getFieldCoordinates() {
+        return fieldCoordinates;
+    }
+
+    public void setFieldCoordinates(Coordinates fieldCoordinates) {
+        this.fieldCoordinates = fieldCoordinates;
     }
 }
+
+
+
+
+

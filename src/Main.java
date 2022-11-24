@@ -11,25 +11,30 @@ public class Main {
             testMapRows.add(new ArrayList<MapField>());
         }
 
-        testMapRows.get(0).add(new WallField());
-        testMapRows.get(1).add(new WallField());
-        testMapRows.get(2).add(new WallField());
-        testMapRows.get(3).add(new WallField());
-        testMapRows.get(4).add(new WallField());
-        testMapRows.get(5).add(new WallField());
-        testMapRows.get(6).add(new WallField());
-        testMapRows.get(7).add(new WallField());
-        testMapRows.get(8).add(new WallField());
-        testMapRows.get(9).add(new WallField());
+        WallField myWallField = new WallField(1, 2);
+        EmptyField myEmptyField = new EmptyField();
+        CornField myCornField = new CornField();
 
-        for (int j = 0; j < 10; j++) {
+        myWallField.printSymbol();
+        System.out.println("Wall consumable: " + myWallField.isConsumable());
+        System.out.println("Wall passable: " + myWallField.isPassable());
 
-            for (int k = 0; k < 5; k++) {
-                testMapRows.get(j).get(0).printSymbol();
-            }
+        myEmptyField.printSymbol();
+        System.out.println("Empty consumable: " + myEmptyField.isConsumable());
+        System.out.println("Empty passable: " + myEmptyField.isPassable());
 
-            System.out.println();
-        }
+        myCornField.printSymbol();
+        System.out.println("Corn consumable: " + myCornField.isConsumable());
+        System.out.println("Corn passable: " + myCornField.isPassable());
+
+//        for (int j = 0; j < 10; j++) {
+//
+//            for (int k = 0; k < 5; k++) {
+//                testMapRows.get(j).get(0).printSymbol();
+//            }
+//
+//            System.out.println();
+//        }
 
 
 //        for (int k = 0; k < 10; k++) {
