@@ -26,6 +26,23 @@ public class Main {
         myCornField.printSymbol();
         System.out.println("Corn consumable: " + myCornField.isConsumable());
         System.out.println("Corn passable: " + myCornField.isPassable());
+        System.out.println();
+        System.out.println();
+
+        GameMap myGameMap = new GameMap(10, 10);
+
+        myGameMap.printGameMap();
+        System.out.println();
+
+        myGameMap.printGameMapCoordinates();
+        System.out.println();
+        System.out.println();
+
+        GameMap largeGameMap = new GameMap(20, 20, 10, 20, 70);
+        largeGameMap.printGameMap();
+        System.out.println();
+        largeGameMap.printGameMapCoordinates();
+
 
 //        for (int j = 0; j < 10; j++) {
 //

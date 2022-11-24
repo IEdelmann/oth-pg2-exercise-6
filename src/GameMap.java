@@ -7,7 +7,7 @@ public class GameMap {
     private final double chanceWallField;
     private final double chanceEmptyField;
     private final double chanceCornField;
-    private ArrayList<ArrayList<MapField>> doubleArray;
+    private ArrayList<ArrayList<MapField>> finalGameMap;
 
     public GameMap(int xDimension, int yDimension) {
         this.xDimension = xDimension;
@@ -15,6 +15,7 @@ public class GameMap {
         this.chanceWallField = chanceConverter(yDimension, 40) - 1;
         this.chanceEmptyField = chanceConverter(yDimension, 40) - 1;
         this.chanceCornField = chanceConverter(yDimension, 20) - 1;
+        this.finalGameMap = generateMap(this.xDimension, this.yDimension);
     }
 
     public GameMap(int xDimension, int yDimension, int chanceWallField, int chanceCornField, int chanceEmptyField) {
@@ -23,6 +24,7 @@ public class GameMap {
         this.chanceWallField = chanceConverter(yDimension, chanceWallField) - 1;
         this.chanceCornField = chanceConverter(yDimension, chanceCornField) - 1;
         this.chanceEmptyField = chanceConverter(yDimension, chanceEmptyField) - 1;
+        this.finalGameMap = generateMap(this.xDimension, this.yDimension);
     }
 
     private double chanceConverter(int y, int chance) {
@@ -32,10 +34,49 @@ public class GameMap {
     private int randomChance(int maxValue) {
         Random random = new Random();
 
-        return random.nextInt(10);
+        return random.nextInt(maxValue);
     }
 
-    private ArrayList<MapField> generateRowInBetween(int y, int rowPosition) {
+    public void printGameMap() {
+        for (int x = 0; x < this.xDimension; x++) {
+
+            for (int y = 0; y < this.yDimension; y++) {
+
+                this.finalGameMap.get(x).get(y).printSymbol();
+            }
+            System.out.println();
+        }
+    }
+
+    public void printGameMapCoordinates() {
+        for (int x = 0; x < this.xDimension; x++) {
+
+            for (int y = 0; y < this.yDimension; y++) {
+                int[] temp = this.finalGameMap.get(x).get(y).getFieldCoordinates().getCoordinate();
+                System.out.print("(" + temp[0] + "/" + temp[1] + ") ");
+            }
+            System.out.println();
+        }
+    }
+
+    private ArrayList<ArrayList<MapField>> generateMap(int xDimension, int yDimension) {
+        ArrayList<ArrayList<MapField>> generatedMap = new ArrayList<>();
+
+        generatedMap.add(generateWallTypeRow(yDimension, 0));
+
+        for (int x = 1; x < xDimension - 2; x++) {
+            generatedMap.add(generateRandomRow(yDimension, x));
+        }
+
+        // Generate a row filled with EmptyField objects to spawn the hamster object;
+        generatedMap.add(generateEmptyTypeRow(yDimension, xDimension - 2));
+
+        generatedMap.add(generateWallTypeRow(yDimension, xDimension - 1));
+
+        return generatedMap;
+    }
+
+    private ArrayList<MapField> generateRandomRow(int y, int rowPosition) {
         ArrayList<MapField> generatedArray = new ArrayList<>();
 
         generatedArray.add(new WallField(rowPosition, 0));
@@ -43,17 +84,19 @@ public class GameMap {
         int randomFieldType;
         double wallTypeLine = this.chanceWallField;
         double emptyTypeLine = wallTypeLine + this.chanceEmptyField;
-        double cornTypeLine = emptyTypeLine + this.chanceCornField;
+        double cornTypeLine = y - 1;
 
         for (int i = 1; i < y; i++) {
-            randomFieldType = randomChance(y);
+            randomFieldType = randomChance(y - 1);
 
             if (randomFieldType <= wallTypeLine) {
                 generatedArray.add(new WallField(rowPosition, i));
+                continue;
             }
 
             if (randomFieldType <= emptyTypeLine) {
                 generatedArray.add(new EmptyField(rowPosition, i));
+                continue;
             }
 
             if (randomFieldType <= cornTypeLine) {
@@ -64,7 +107,7 @@ public class GameMap {
         return generatedArray;
     }
 
-    private ArrayList<MapField> generateFirstAndLastRow(int y, int rowPosition) {
+    private ArrayList<MapField> generateWallTypeRow(int y, int rowPosition) {
         ArrayList<MapField> generatedArray = new ArrayList<>();
 
         for (int i = 0; i < y; i++) {
@@ -72,5 +115,45 @@ public class GameMap {
         }
 
         return generatedArray;
+    }
+
+    private ArrayList<MapField> generateEmptyTypeRow(int y, int rowPosition) {
+        ArrayList<MapField> generatedArray = new ArrayList<>();
+
+        generatedArray.add(new WallField(rowPosition, 0));
+
+        for (int i = 1; i < y; i++) {
+            generatedArray.add(new EmptyField(rowPosition, i));
+        }
+
+        return generatedArray;
+    }
+
+    public int getXDimension() {
+        return xDimension;
+    }
+
+    public int getYDimension() {
+        return yDimension;
+    }
+
+    public double getChanceWallField() {
+        return chanceWallField;
+    }
+
+    public double getChanceEmptyField() {
+        return chanceEmptyField;
+    }
+
+    public double getChanceCornField() {
+        return chanceCornField;
+    }
+
+    public ArrayList<ArrayList<MapField>> getFinalGameMap() {
+        return finalGameMap;
+    }
+
+    public void setFinalGameMap(ArrayList<ArrayList<MapField>> finalGameMap) {
+        this.finalGameMap = finalGameMap;
     }
 }
