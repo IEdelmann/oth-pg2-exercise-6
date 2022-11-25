@@ -54,7 +54,7 @@ public class GameMap {
         }
     }
 
-    // Only for testing purposes, print the field objects x/y coordiantes;
+    // Only for testing purposes, print the field objects x/y coordinates;
     public void printGameMapCoordinates() {
         for (int x = 0; x < this.xDimension; x++) {
 
@@ -94,10 +94,10 @@ public class GameMap {
         // Splits the changes of the various field types into a 'range';
         double wallTypeLine = this.chanceWallField;
         double emptyTypeLine = wallTypeLine + this.chanceEmptyField;
-        double cornTypeLine = y - 1; // The given y-dimension is always *1* larger than is actually possible - 10 yields a range from 0 to 9;
+        double cornTypeLine = y - 2; // The given y-dimension is always *1* larger than is actually possible - 10 yields a range from 0 to 9;
 
         // Fills the ArrayList with random field type objects;
-        for (int i = 1; i < y; i++) {
+        for (int i = 1; i < y - 1; i++) {   // y - 1 because there has to be room for the last field as it is supposed to be a WallField object;
             randomFieldType = randomChance(y - 1); // '-1' because... see the comment above;
 
             if (randomFieldType <= wallTypeLine) {
@@ -114,6 +114,9 @@ public class GameMap {
                 generatedArray.add(new CornField(rowPosition, i));
             }
         }
+
+        // The last field type object in every array is a WallType object;
+        generatedArray.add(new WallField(rowPosition, y));
 
         return generatedArray;
     }
@@ -135,9 +138,13 @@ public class GameMap {
 
         generatedArray.add(new WallField(rowPosition, 0));
 
-        for (int i = 1; i < y; i++) {
+        // y - 1 because the last field type has to be WallType object;
+        for (int i = 1; i < y - 1; i++) {
             generatedArray.add(new EmptyField(rowPosition, i));
         }
+
+        // The last field type is a WallType object;
+        generatedArray.add(new WallField(rowPosition, y));
 
         return generatedArray;
     }

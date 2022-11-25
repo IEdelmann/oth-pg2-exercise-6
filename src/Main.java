@@ -38,7 +38,7 @@ public class Main {
 //        System.out.println();
 //        System.out.println();
 
-        GameMap largeGameMap = new GameMap(50, 50, 10, 10, 80);
+        GameMap largeGameMap = new GameMap(20, 20, 10, 10, 80);
         largeGameMap.printGameMap();
         System.out.println();
 //        largeGameMap.printGameMapCoordinates();
