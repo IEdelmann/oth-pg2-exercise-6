@@ -11,37 +11,37 @@ public class Main {
             testMapRows.add(new ArrayList<MapField>());
         }
 
-        WallField myWallField = new WallField(1, 2);
-        EmptyField myEmptyField = new EmptyField();
-        CornField myCornField = new CornField();
+//        WallField myWallField = new WallField(1, 2);
+//        EmptyField myEmptyField = new EmptyField();
+//        CornField myCornField = new CornField();
+//
+//        myWallField.printSymbol();
+//        System.out.println("Wall consumable: " + myWallField.isConsumable());
+//        System.out.println("Wall passable: " + myWallField.isPassable());
+//
+//        myEmptyField.printSymbol();
+//        System.out.println("Empty consumable: " + myEmptyField.isConsumable());
+//        System.out.println("Empty passable: " + myEmptyField.isPassable());
+//
+//        myCornField.printSymbol();
+//        System.out.println("Corn consumable: " + myCornField.isConsumable());
+//        System.out.println("Corn passable: " + myCornField.isPassable());
+//        System.out.println();
+//        System.out.println();
 
-        myWallField.printSymbol();
-        System.out.println("Wall consumable: " + myWallField.isConsumable());
-        System.out.println("Wall passable: " + myWallField.isPassable());
+//        GameMap myGameMap = new GameMap(10, 10);
+//
+//        myGameMap.printGameMap();
+//        System.out.println();
+//
+//        myGameMap.printGameMapCoordinates();
+//        System.out.println();
+//        System.out.println();
 
-        myEmptyField.printSymbol();
-        System.out.println("Empty consumable: " + myEmptyField.isConsumable());
-        System.out.println("Empty passable: " + myEmptyField.isPassable());
-
-        myCornField.printSymbol();
-        System.out.println("Corn consumable: " + myCornField.isConsumable());
-        System.out.println("Corn passable: " + myCornField.isPassable());
-        System.out.println();
-        System.out.println();
-
-        GameMap myGameMap = new GameMap(10, 10);
-
-        myGameMap.printGameMap();
-        System.out.println();
-
-        myGameMap.printGameMapCoordinates();
-        System.out.println();
-        System.out.println();
-
-        GameMap largeGameMap = new GameMap(20, 20, 10, 20, 70);
+        GameMap largeGameMap = new GameMap(50, 50, 10, 10, 80);
         largeGameMap.printGameMap();
         System.out.println();
-        largeGameMap.printGameMapCoordinates();
+//        largeGameMap.printGameMapCoordinates();
 
 
 //        for (int j = 0; j < 10; j++) {

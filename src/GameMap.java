@@ -9,15 +9,18 @@ public class GameMap {
     private final double chanceCornField;
     private ArrayList<ArrayList<MapField>> finalGameMap;
 
+    // When creating a 'GameMap' object, the dimensions have to be set but the default chances for various field types are applied;
     public GameMap(int xDimension, int yDimension) {
         this.xDimension = xDimension;
         this.yDimension = yDimension;
+        // WallField = 40%, EmptyField = 50%, CornField = 10%;
         this.chanceWallField = chanceConverter(yDimension, 40) - 1;
-        this.chanceEmptyField = chanceConverter(yDimension, 40) - 1;
-        this.chanceCornField = chanceConverter(yDimension, 20) - 1;
+        this.chanceEmptyField = chanceConverter(yDimension, 50) - 1;
+        this.chanceCornField = chanceConverter(yDimension, 10) - 1;
         this.finalGameMap = generateMap(this.xDimension, this.yDimension);
     }
 
+    // Constructor for generating the game map with customized field type chances;
     public GameMap(int xDimension, int yDimension, int chanceWallField, int chanceCornField, int chanceEmptyField) {
         this.xDimension = xDimension;
         this.yDimension = yDimension;
@@ -27,16 +30,19 @@ public class GameMap {
         this.finalGameMap = generateMap(this.xDimension, this.yDimension);
     }
 
+    // Simply breaks down the field type chances down to the actually available amount of fields;
     private double chanceConverter(int y, int chance) {
         return ((double)y * chance) / 100;
     }
 
+    // Returns a random value between 0 and the given parameter - 1;
     private int randomChance(int maxValue) {
         Random random = new Random();
 
         return random.nextInt(maxValue);
     }
 
+    // Goes through the game map ArrayLists and instructs every field object to print its symbol;
     public void printGameMap() {
         for (int x = 0; x < this.xDimension; x++) {
 
@@ -48,6 +54,7 @@ public class GameMap {
         }
     }
 
+    // Only for testing purposes, print the field objects x/y coordiantes;
     public void printGameMapCoordinates() {
         for (int x = 0; x < this.xDimension; x++) {
 
@@ -59,19 +66,20 @@ public class GameMap {
         }
     }
 
+    // Generates the whole game map;
     private ArrayList<ArrayList<MapField>> generateMap(int xDimension, int yDimension) {
         ArrayList<ArrayList<MapField>> generatedMap = new ArrayList<>();
 
-        generatedMap.add(generateWallTypeRow(yDimension, 0));
+        generatedMap.add(generateWallTypeRow(yDimension, 0));       // The first row is always filled with WallType objects;
 
         for (int x = 1; x < xDimension - 2; x++) {
             generatedMap.add(generateRandomRow(yDimension, x));
         }
 
-        // Generate a row filled with EmptyField objects to spawn the hamster object;
+        // Generate a row filled with EmptyField objects to safely spawn the hamster object;
         generatedMap.add(generateEmptyTypeRow(yDimension, xDimension - 2));
 
-        generatedMap.add(generateWallTypeRow(yDimension, xDimension - 1));
+        generatedMap.add(generateWallTypeRow(yDimension, xDimension - 1)); // The last row is always filled with WallType objects;
 
         return generatedMap;
     }
@@ -79,15 +87,18 @@ public class GameMap {
     private ArrayList<MapField> generateRandomRow(int y, int rowPosition) {
         ArrayList<MapField> generatedArray = new ArrayList<>();
 
-        generatedArray.add(new WallField(rowPosition, 0));
+        generatedArray.add(new WallField(rowPosition, 0)); // The first object of every row is a WallType object;
 
         int randomFieldType;
+
+        // Splits the changes of the various field types into a 'range';
         double wallTypeLine = this.chanceWallField;
         double emptyTypeLine = wallTypeLine + this.chanceEmptyField;
-        double cornTypeLine = y - 1;
+        double cornTypeLine = y - 1; // The given y-dimension is always *1* larger than is actually possible - 10 yields a range from 0 to 9;
 
+        // Fills the ArrayList with random field type objects;
         for (int i = 1; i < y; i++) {
-            randomFieldType = randomChance(y - 1);
+            randomFieldType = randomChance(y - 1); // '-1' because... see the comment above;
 
             if (randomFieldType <= wallTypeLine) {
                 generatedArray.add(new WallField(rowPosition, i));
@@ -107,6 +118,7 @@ public class GameMap {
         return generatedArray;
     }
 
+    // Return a ArrayList completely filled with WallType objects;
     private ArrayList<MapField> generateWallTypeRow(int y, int rowPosition) {
         ArrayList<MapField> generatedArray = new ArrayList<>();
 
@@ -117,6 +129,7 @@ public class GameMap {
         return generatedArray;
     }
 
+    // Return a ArrayList completely filled with EmptyType objects;
     private ArrayList<MapField> generateEmptyTypeRow(int y, int rowPosition) {
         ArrayList<MapField> generatedArray = new ArrayList<>();
 

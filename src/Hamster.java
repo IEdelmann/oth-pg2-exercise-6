@@ -7,6 +7,8 @@ public class Hamster extends MapField {
         this.direction = 0;
         this.cornEaten = 0;
         this.fieldSymbol = '^';
+        this.consumable = false;
+        this.passable = false;
     }
 
     public void changeDirection(int directionInstruction) {

@@ -5,10 +5,6 @@ public abstract class MapField {
 
     protected Coordinates fieldCoordinates;
 
-//    public MapField(int xCoordinate, int yCoordinate) {
-//        this.fieldCoordinates = new Coordinates(xCoordinate, yCoordinate);
-//    }
-
     public void printSymbol() {
         System.out.print(this.getFieldSymbol());
     }
