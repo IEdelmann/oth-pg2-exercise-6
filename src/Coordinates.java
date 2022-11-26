@@ -1,29 +1,34 @@
 public class Coordinates {
-    private int xCoordinate;
-    private int yCoordinate;
+    private int columnCoordinate;
+    private int rowCoordinate;
 
-    public Coordinates(int xCoordinate, int yCoordinate) {
-        this.xCoordinate = xCoordinate;
-        this.yCoordinate = yCoordinate;
+    public Coordinates(int rowCoordinate, int columnCoordinate) {
+        this.setRowCoordinate(rowCoordinate);
+        this.setColumnCoordinate(columnCoordinate);
     }
 
-    public int[] getCoordinate() {
-        return new int[]{this.xCoordinate, this.yCoordinate};
+    // Deep copy constructor;
+    public Coordinates(Coordinates deepCopy) {
+        this(deepCopy.getRowCoordinate(), deepCopy.getColumnCoordinate());
     }
 
-    public int getXCoordinate() {
-        return xCoordinate;
+    public int[] getCoordinates() {
+        return new int[]{this.getRowCoordinate(), this.getColumnCoordinate()};
     }
 
-    public void setXCoordinate(int xCoordinate) {
-        this.xCoordinate = xCoordinate;
+    public int getColumnCoordinate() {
+        return this.columnCoordinate;
     }
 
-    public int getYCoordinate() {
-        return yCoordinate;
+    public void setColumnCoordinate(int columnCoordinate) {
+        this.columnCoordinate = columnCoordinate;
     }
 
-    public void setYCoordinate(int yCoordinate) {
-        this.yCoordinate = yCoordinate;
+    public int getRowCoordinate() {
+        return rowCoordinate;
+    }
+
+    public void setRowCoordinate(int rowCoordinate) {
+        this.rowCoordinate = rowCoordinate;
     }
 }

@@ -1,92 +1,41 @@
-import java.util.ArrayList;
-import java.util.Arrays;
+import myUtilities.UserInput;
 
 public class Main {
 
     public static void main(String[] args) {
 
-        ArrayList<ArrayList<MapField>> testMapRows = new ArrayList<>();
-        ArrayList<MapField> testMapColumns = new ArrayList<>();
+//        GameMap myGameMap = new GameMap(10, 10);  // Map with 10x10 dimensions and default field type chances;
+//        myGameMap.printGameMap();                 // For testing purposes only - prints all the coordinates;
 
-        for (int i = 0; i < 10; i++) {
-            testMapRows.add(new ArrayList<MapField>());
+        GameMap gameMapDynamicChances = new GameMap(15,15, 30, 10, 60);
+        Hamster hamster = gameMapDynamicChances.getGameHamster();
+//        gameMapDynamicChances.printGameMapCoordinates();      // For testing purposes only - prints all the coordinates;
+
+        printIntro();
+
+        boolean runTimeFlag = true;
+        UserInput userInput = new UserInput();
+        char directionInput;
+
+        while (runTimeFlag) {
+            gameMapDynamicChances.printGameMap();
+            System.out.println("Corns eaten: " + hamster.getCornEaten());
+
+            directionInput = userInput.userInputString("Direction: ", "[w, a, s, d, x]", 1).charAt(0);
+
+            if (directionInput == 'x') {
+                System.out.println("Thank you for playing the official xHamster game :D");
+                runTimeFlag = false;
+            }
+
+            gameMapDynamicChances.moveHamster(directionInput);
         }
+    }
 
-//        WallField myWallField = new WallField(1, 2);
-//        EmptyField myEmptyField = new EmptyField();
-//        CornField myCornField = new CornField();
-//
-//        myWallField.printSymbol();
-//        System.out.println("Wall consumable: " + myWallField.isConsumable());
-//        System.out.println("Wall passable: " + myWallField.isPassable());
-//
-//        myEmptyField.printSymbol();
-//        System.out.println("Empty consumable: " + myEmptyField.isConsumable());
-//        System.out.println("Empty passable: " + myEmptyField.isPassable());
-//
-//        myCornField.printSymbol();
-//        System.out.println("Corn consumable: " + myCornField.isConsumable());
-//        System.out.println("Corn passable: " + myCornField.isPassable());
-//        System.out.println();
-//        System.out.println();
-
-//        GameMap myGameMap = new GameMap(10, 10);
-//
-//        myGameMap.printGameMap();
-//        System.out.println();
-//
-//        myGameMap.printGameMapCoordinates();
-//        System.out.println();
-//        System.out.println();
-
-        GameMap largeGameMap = new GameMap(10, 10, 10, 10, 80);
-        largeGameMap.printGameMap();
-        System.out.println();
-        largeGameMap.printGameMapCoordinates();
-
-//        Hamster myHamster = new Hamster(4, 5);
-//        System.out.println(Arrays.toString(myHamster.getFieldCoordinates().getCoordinate()));
-
-
-//        for (int j = 0; j < 10; j++) {
-//
-//            for (int k = 0; k < 5; k++) {
-//                testMapRows.get(j).get(0).printSymbol();
-//            }
-//
-//            System.out.println();
-//        }
-
-
-//        for (int k = 0; k < 10; k++) {
-//
-//            for (int l = 0; l < 10; l++) {
-//
-//                testMapColumns.add(new WallField());
-//            }
-//            testMapRows.add(testMapColumns);
-//        }
-//
-//        for (int n = 0; n < 10; n++) {
-//
-//            for (int o = 0; o < 10; o++) {
-//                testMapRows.get(n).get(o).printSymbol();
-//            }
-//            System.out.println();
-//        }
-
-
-
-//        int[][] myArray = {{10, 30 , 50, 70}, {20, 40, 60, 80}, {5, 15, 25, 35}};
-//
-//        for (int i = 0; i < myArray.length; i++) {
-//
-//            for (int j = 0; j < myArray[i].length; j++) {
-//
-//                System.out.print(myArray[i][j] + " ");
-//            }
-//
-//            System.out.println();
-//        }
+    public static void printIntro() {
+        System.out.println("Welcome to the xHamster game!");
+        System.out.println("You can maneuver by 'w', 'a', 's' and 'd'.");
+        System.out.println("Eat as many as possible corns '*'.");
+        System.out.println("To exit the game enter 'x' - that is why the game's called xHamster... in case you were wondering...\n");
     }
 }

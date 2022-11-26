@@ -10,7 +10,7 @@ public abstract class MapField {
     }
 
     public char getFieldSymbol() {
-        return fieldSymbol;
+        return this.fieldSymbol;
     }
 
     public void setFieldSymbol(char fieldSymbol) {
@@ -18,7 +18,7 @@ public abstract class MapField {
     }
 
     public boolean isConsumable() {
-        return consumable;
+        return this.consumable;
     }
 
     public void setConsumable(boolean consumable) {
@@ -26,7 +26,7 @@ public abstract class MapField {
     }
 
     public boolean isPassable() {
-        return passable;
+        return this.passable;
     }
 
     public void setPassable(boolean passable) {
@@ -34,7 +34,7 @@ public abstract class MapField {
     }
 
     public Coordinates getFieldCoordinates() {
-        return fieldCoordinates;
+        return this.fieldCoordinates;
     }
 
     public void setFieldCoordinates(Coordinates fieldCoordinates) {

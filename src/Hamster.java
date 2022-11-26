@@ -2,40 +2,31 @@ public class Hamster extends MapField {
     private int direction;
     private int cornEaten;
 
-    public Hamster() {
-        this.direction = 0;
-        this.cornEaten = 0;
-        this.fieldSymbol = '^';
-        this.consumable = false;
-        this.passable = false;
+    // Set to private - only for testing purposes;
+    private Hamster() {
+        this.setDirection(0);
+        this.setCornEaten(0);
+        this.setFieldSymbol('^');
+        this.setConsumable(false);
+        this.setPassable(false);
     }
 
-    public Hamster(int xCoordinate, int yCoordinate) {
-        this.direction = 0;
-        this.cornEaten = 0;
-        this.fieldSymbol = '^';
-        this.consumable = false;
-        this.passable = false;
-        this.fieldCoordinates= new Coordinates(xCoordinate, yCoordinate);
+    public Hamster(int rowCoordinate, int columnCoordinate) {
+        this.setDirection(0);
+        this.setCornEaten(0);
+        this.setFieldSymbol('^');
+        this.setConsumable(false);
+        this.setPassable(false);
+        this.setFieldCoordinates(new Coordinates(rowCoordinate, columnCoordinate));
+    }
+
+    public void consumeCorn() {
+        this.setCornEaten(this.getCornEaten() + 1);
     }
 
     public void changeDirection(int directionInstruction) {
-        if (directionInstruction >= -1 && directionInstruction <= 1) {
-            directionConverter(directionInstruction);
-            changeDirectionOfSymbol();
-        }
-    }
-
-    private void directionConverter(int directionChange) {
-        int temp = this.getDirection() + directionChange;
-
-        if (temp > 3) {
-            this.setDirection(0);
-        }
-
-        if (temp < 0) {
-            this.setDirection(3);
-        }
+        this.setDirection(directionInstruction);
+        changeDirectionOfSymbol();
     }
 
     private void changeDirectionOfSymbol() {
@@ -63,10 +54,10 @@ public class Hamster extends MapField {
         }
     }
 
-    private Coordinates getCoordinatesOfFieldInFront() {
-        int[] coordinatesOfFieldInFront = this.getFieldCoordinates().getCoordinate();
+    public Coordinates getCoordinatesOfFieldInFront() {
+        int[] coordinatesOfFieldInFront = this.getFieldCoordinates().getCoordinates();
 
-        switch (this.direction) {
+        switch (this.getDirection()) {
 
             case 0 -> {
                coordinatesOfFieldInFront[0] -= 1;
@@ -92,16 +83,8 @@ public class Hamster extends MapField {
         return new Coordinates(coordinatesOfFieldInFront[0], coordinatesOfFieldInFront[1]);
     }
 
-//    private MapField fieldInFront(Coordinates coordinatesOfField) {
-//
-//    }
-
-    private boolean interactWithFieldInFront(Coordinates coordinatesOfFieldInFront) {
-        return true;
-    }
-
     public int getDirection() {
-        return direction;
+        return this.direction;
     }
 
     public void setDirection(int direction) {
@@ -109,7 +92,7 @@ public class Hamster extends MapField {
     }
 
     public int getCornEaten() {
-        return cornEaten;
+        return this.cornEaten;
     }
 
     public void setCornEaten(int cornEaten) {
