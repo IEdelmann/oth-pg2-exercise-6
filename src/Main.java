@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Main {
 
@@ -38,10 +39,13 @@ public class Main {
 //        System.out.println();
 //        System.out.println();
 
-        GameMap largeGameMap = new GameMap(20, 20, 10, 10, 80);
+        GameMap largeGameMap = new GameMap(10, 10, 10, 10, 80);
         largeGameMap.printGameMap();
         System.out.println();
-//        largeGameMap.printGameMapCoordinates();
+        largeGameMap.printGameMapCoordinates();
+
+//        Hamster myHamster = new Hamster(4, 5);
+//        System.out.println(Arrays.toString(myHamster.getFieldCoordinates().getCoordinate()));
 
 
 //        for (int j = 0; j < 10; j++) {

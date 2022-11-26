@@ -30,6 +30,14 @@ public class GameMap {
         this.finalGameMap = generateMap(this.xDimension, this.yDimension);
     }
 
+    private void spawnHamster(ArrayList<ArrayList<MapField>> generatedMap) {
+        int spawnColumnCoordinate = 1;
+        int spawnRowCoordinate = this.getYDimension() - 2;
+
+        generatedMap.get(spawnRowCoordinate).remove(1);
+        generatedMap.get(spawnRowCoordinate).add(1, new Hamster(spawnRowCoordinate, spawnColumnCoordinate));
+    }
+
     // Simply breaks down the field type chances down to the actually available amount of fields;
     private double chanceConverter(int y, int chance) {
         return ((double)y * chance) / 100;
@@ -81,6 +89,9 @@ public class GameMap {
 
         generatedMap.add(generateWallTypeRow(yDimension, xDimension - 1)); // The last row is always filled with WallType objects;
 
+        // Spawn the hamster object into the game map;
+        spawnHamster(generatedMap);
+
         return generatedMap;
     }
 
@@ -116,7 +127,7 @@ public class GameMap {
         }
 
         // The last field type object in every array is a WallType object;
-        generatedArray.add(new WallField(rowPosition, y));
+        generatedArray.add(new WallField(rowPosition, y - 1));
 
         return generatedArray;
     }
@@ -144,7 +155,7 @@ public class GameMap {
         }
 
         // The last field type is a WallType object;
-        generatedArray.add(new WallField(rowPosition, y));
+        generatedArray.add(new WallField(rowPosition, y - 1));
 
         return generatedArray;
     }

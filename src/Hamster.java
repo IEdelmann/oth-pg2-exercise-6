@@ -1,7 +1,6 @@
 public class Hamster extends MapField {
     private int direction;
     private int cornEaten;
-    private Coordinates currentCoordinates;
 
     public Hamster() {
         this.direction = 0;
@@ -9,6 +8,15 @@ public class Hamster extends MapField {
         this.fieldSymbol = '^';
         this.consumable = false;
         this.passable = false;
+    }
+
+    public Hamster(int xCoordinate, int yCoordinate) {
+        this.direction = 0;
+        this.cornEaten = 0;
+        this.fieldSymbol = '^';
+        this.consumable = false;
+        this.passable = false;
+        this.fieldCoordinates= new Coordinates(xCoordinate, yCoordinate);
     }
 
     public void changeDirection(int directionInstruction) {
@@ -55,16 +63,41 @@ public class Hamster extends MapField {
         }
     }
 
-    public boolean moveForward(MapField mapField) {
+    private Coordinates getCoordinatesOfFieldInFront() {
+        int[] coordinatesOfFieldInFront = this.getFieldCoordinates().getCoordinate();
+
+        switch (this.direction) {
+
+            case 0 -> {
+               coordinatesOfFieldInFront[0] -= 1;
+            }
+
+            case 1 -> {
+                coordinatesOfFieldInFront[1] += 1;
+            }
+
+            case 2 -> {
+                coordinatesOfFieldInFront[0] += 1;
+            }
+
+            case 3 -> {
+                coordinatesOfFieldInFront[1] -= 1;
+            }
+
+            default -> {
+                System.out.println("If you see this line, somethings wrong the hamsters direction variable!");
+            }
+        }
+
+        return new Coordinates(coordinatesOfFieldInFront[0], coordinatesOfFieldInFront[1]);
+    }
+
+//    private MapField fieldInFront(Coordinates coordinatesOfField) {
+//
+//    }
+
+    private boolean interactWithFieldInFront(Coordinates coordinatesOfFieldInFront) {
         return true;
-    }
-
-    public Coordinates getCurrentCoordinates() {
-        return currentCoordinates;
-    }
-
-    public void setCurrentCoordinates(Coordinates currentCoordinates) {
-        this.currentCoordinates = currentCoordinates;
     }
 
     public int getDirection() {
