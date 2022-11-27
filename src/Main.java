@@ -23,6 +23,9 @@ public class Main {
 
             directionInput = userInput.userInputString("Direction: ", "[w, a, s, d, x]", 1).charAt(0);
 
+            // Prints 50 new lines to display the game better;
+//            System.out.println(new String(new char[50]).replace("\0", "\r\n"));
+
             if (directionInput == 'x') {
                 System.out.println("Thank you for playing the official xHamster game :D");
                 runTimeFlag = false;
@@ -33,9 +36,9 @@ public class Main {
     }
 
     public static void printIntro() {
-        System.out.println("Welcome to the xHamster game!");
+        System.out.println("\nWelcome to the xHamster game!");
         System.out.println("You can maneuver by 'w', 'a', 's' and 'd'.");
-        System.out.println("Eat as many as possible corns '*'.");
+        System.out.println("Eat as many corns '*' as possible.");
         System.out.println("To exit the game enter 'x' - that is why the game's called xHamster... in case you were wondering...\n");
     }
 }
