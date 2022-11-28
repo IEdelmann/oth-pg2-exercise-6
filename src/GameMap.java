@@ -105,7 +105,6 @@ public class GameMap {
     }
 
     private boolean interactWithFieldInFrontOfHamster(MapField mapField) {
-        Coordinates mapFieldCoordinates = mapField.getFieldCoordinates();
 
         if (mapField.isConsumable()) {
             this.getGameHamster().consumeCorn();
