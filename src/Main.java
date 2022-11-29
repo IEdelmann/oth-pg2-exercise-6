@@ -9,7 +9,7 @@ public class Main {
 //        GameMap myGameMap = new GameMap(10, 10);  // Map with 10x10 dimensions and default field type chances;
 //        myGameMap.printGameMap();                 // For testing purposes only - prints all the coordinates;
 
-        GameMap gameMapDynamicChances = new GameMap(8,8, 30, 10, 60);
+        GameMap gameMapDynamicChances = new GameMap(15,15, 30, 10, 60);
         Hamster hamster = gameMapDynamicChances.getGameHamster();
 //        gameMapDynamicChances.printGameMapCoordinates();      // For testing purposes only - prints all the coordinates;
 

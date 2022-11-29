@@ -233,6 +233,12 @@ public class GameMap {
         for (int i = 1; i < columnDimension - 1; i++) {   // columnDimension - 1 because there has to be room for the last field as it is supposed to be a WallField object;
             randomFieldType = randomChance(columnDimension - 1); // '-1' because... see the comment above;
 
+            // For the new 'red pill' route - it leaves space for the exit;
+            if (row == 1 && i == columnDimension - 2) {
+                generatedArray.add(new EmptyField(row, i));
+                continue;
+            }
+
             if (randomFieldType <= wallTypeLine) {
                 generatedArray.add(new WallField(row, i));
                 continue;
