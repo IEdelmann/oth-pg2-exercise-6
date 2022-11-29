@@ -1,5 +1,6 @@
 public class CornField extends MapField {
     // Set to private - only for testing purposes;
+    public static int cornSpawn;
     private CornField() {
         this.setFieldSymbol('*');
         this.setConsumable(true);

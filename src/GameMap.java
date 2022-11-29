@@ -9,6 +9,7 @@ public class GameMap {
     private final double chanceCornField;
     private ArrayList<ArrayList<MapField>> finalGameMap;
     private Hamster gameHamster;
+    public static Coordinates matrixExit;
 
     // When creating a 'GameMap' object, the dimensions have to be set but the default chances for various field types are applied;
     public GameMap(int columnDimension, int rowDimension) {
@@ -110,6 +111,7 @@ public class GameMap {
             this.getGameHamster().consumeCorn();
             replaceField(mapField, new EmptyField(new Coordinates(mapField.getFieldCoordinates())));
             printHamsterNoises();
+            CornField.cornSpawn--;      // For the 'rat race' route;
             return false;
         }
 
@@ -196,7 +198,9 @@ public class GameMap {
     private ArrayList<ArrayList<MapField>> generateMap(int rowDimension, int columnDimension) {
         ArrayList<ArrayList<MapField>> generatedMap = new ArrayList<>();
 
-        generatedMap.add(generateWallTypeRow(0, columnDimension));       // The first row is always filled with WallType objects;
+        // The first row is always filled with WallType objects;
+//        generatedMap.add(generateWallTypeRow(0, columnDimension));
+        generatedMap.add(generateWallTypeRowMatrix(columnDimension));    // For the new 'red pill' route;
 
         for (int row = 1; row < rowDimension - 2; row++) {
             generatedMap.add(generateRandomRow(row, columnDimension));
@@ -241,6 +245,7 @@ public class GameMap {
 
             if (randomFieldType <= cornTypeLine) {
                 generatedArray.add(new CornField(row, i));
+                CornField.cornSpawn++;      // For the 'rat race' route;
             }
         }
 
@@ -256,6 +261,24 @@ public class GameMap {
 
         for (int i = 0; i < columnDimension; i++) {
             generatedArray.add(new WallField(rowPosition, i));
+        }
+
+        return generatedArray;
+    }
+
+    // For the new 'red pill' route;
+    private ArrayList<MapField> generateWallTypeRowMatrix(int columnDimension) {
+        ArrayList<MapField> generatedArray = new ArrayList<>();
+
+        for (int i = 0; i < columnDimension; i++) {
+
+            if (i == columnDimension - 2) {
+                generatedArray.add(new EmptyField(0, i));
+                GameMap.matrixExit = new Coordinates(0, i);     // For the 'red pill' route;
+                continue;
+            }
+
+            generatedArray.add(new WallField(0, i));
         }
 
         return generatedArray;
