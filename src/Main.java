@@ -1,5 +1,4 @@
 import myUtilities.UserInput;
-
 import java.util.Arrays;
 
 public class Main {
