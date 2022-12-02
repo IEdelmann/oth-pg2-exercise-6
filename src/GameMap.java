@@ -55,7 +55,10 @@ public class GameMap {
 
     public void moveHamster(char inputInstruction) {
         int currentDirection = this.gameHamster.getDirection();
-        MapField fieldInFrontOfHamster = getFieldInFrontOfHamster();
+
+        // Unfortunately necessary for the 'red pill' route - the field in front of the hamster can only be inquired, when the hamster object is about to move;
+        // Otherwise the game crashed 'too early';
+//        MapField fieldInFrontOfHamster = getFieldInFrontOfHamster();
 
         switch (inputInstruction) {
 
@@ -64,6 +67,8 @@ public class GameMap {
                     gameHamster.changeDirection(0);
                     return;
                 }
+
+                MapField fieldInFrontOfHamster = getFieldInFrontOfHamster();
 
                 if(interactWithFieldInFrontOfHamster(fieldInFrontOfHamster)) {
                     System.out.println("Cannot move forward!");
@@ -76,6 +81,8 @@ public class GameMap {
                     return;
                 }
 
+                MapField fieldInFrontOfHamster = getFieldInFrontOfHamster();
+
                 if(interactWithFieldInFrontOfHamster(fieldInFrontOfHamster)) {
                     System.out.println("Cannot move forward!");
                 }
@@ -87,6 +94,8 @@ public class GameMap {
                     return;
                 }
 
+                MapField fieldInFrontOfHamster = getFieldInFrontOfHamster();
+
                 if(interactWithFieldInFrontOfHamster(fieldInFrontOfHamster)) {
                     System.out.println("Cannot move forward!");
                 }
@@ -97,6 +106,8 @@ public class GameMap {
                     gameHamster.changeDirection(1);
                     return;
                 }
+
+                MapField fieldInFrontOfHamster = getFieldInFrontOfHamster();
 
                 if(interactWithFieldInFrontOfHamster(fieldInFrontOfHamster)) {
                     System.out.println("Cannot move forward!");
