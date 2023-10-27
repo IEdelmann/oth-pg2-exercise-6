@@ -59,10 +59,9 @@ public class Main {
     }
 
     public static void printIntro() {
-        System.out.println("\nWelcome to the yHamster game!");
+        System.out.println("\nWelcome to the Super Hamster World 3!");
         System.out.println("You can maneuver by 'w', 'a', 's' and 'd'.");
         System.out.println("You can eat as many corn '*' as you like - eat all to win the game.");
-        System.out.println("To exit the game enter 'y' - that is why the game's called yHamster.");
-        System.out.println("(To avoid legal issues with a large online platform for adult videos, I have now decided to call the game 'yHamster' instead of my original idea.)\n");
+        System.out.println("To exit the game enter 'y'.");
     }
 }

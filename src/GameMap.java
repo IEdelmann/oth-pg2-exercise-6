@@ -146,19 +146,19 @@ public class GameMap {
                 System.out.println("Hummhh... yeah! Now that is some delicious corn...");
             }
             case 1 -> {
-                System.out.println("Damn! That juicy... corn...");
+                System.out.println("Damn! That corn is sure healthy!");
             }
             case 2 -> {
-                System.out.println("Those are some well-shaped... corns...");
+                System.out.println("Corn this, corn that...");
             }
             case 3 -> {
-                System.out.println("Big...corns!");
+                System.out.println("The amount of corn is too damn low!!");
             }
             case 4 -> {
-                System.out.println("Corns... I need more corns...!");
+                System.out.println("Corntastic!");
             }
             case 5 -> {
-                System.out.println("Those corns are *definitely* real... gulp...!");
+                System.out.println("They're calling me Cornelius for a reason.");
             }
         }
     }
